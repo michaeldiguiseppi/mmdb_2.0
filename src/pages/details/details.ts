@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { CollectionProvider } from '../../providers/collection/collection';
 
 /**
  * Generated class for the DetailsPage page.
@@ -13,12 +14,21 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'details.html',
 })
 export class DetailsPage {
+  media: object;
+  arrayOfKeys: string[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public collectionProvider: CollectionProvider) {
+    this.media = navParams.data;
+    this.collectionProvider = collectionProvider;
+    console.log(this.media)
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad DetailsPage');
+  removeFromCollection(item) {
+    this.collectionProvider.removeFromCollection(item, 'collection').subscribe((res) => {
+      console.log(res);
+      if (res.status == 'success') {
+        this.navCtrl.pop();
+      }
+    });
   }
-
 }

@@ -17,9 +17,9 @@
 <ion-content padding>
   <ion-list>
     <div *ngFor="let item of collectionItems">
-      <ion-item >
+      <button ion-item (click)="getDetails(item)">
         {{ item.Title }}
-      </ion-item>
+      </button>
     </div>
   </ion-list>
 </ion-content>

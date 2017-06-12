@@ -13,6 +13,7 @@ import { WatchlistPage } from '../pages/watchlist/watchlist';
 import { SettingsPage } from '../pages/settings/settings';
 import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
+import { DetailsPage } from '../pages/details/details';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -29,7 +30,8 @@ import { CollectionProvider } from '../providers/collection/collection';
     WatchlistPage,
     SettingsPage,
     RegisterPage,
-    LoginPage
+    LoginPage,
+    DetailsPage
   ],
   imports: [
     BrowserModule,
@@ -47,7 +49,8 @@ import { CollectionProvider } from '../providers/collection/collection';
     WatchlistPage,
     SettingsPage,
     RegisterPage,
-    LoginPage
+    LoginPage,
+    DetailsPage
   ],
   providers: [
     StatusBar,

@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { CollectionProvider } from '../../providers/collection/collection';
 
+import { DetailsPage } from '../details/details';
+
 /**
  * Generated class for the CollectionPage page.
  *
@@ -17,17 +19,26 @@ export class CollectionPage {
   collectionItems: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private collectionProvider: CollectionProvider) {
+    this.navCtrl = navCtrl;
     this.getCollection();
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad CollectionPage');
-  }
+ionViewWillEnter() {
+  this.getCollection();
+}
 
   getCollection() {
     this.collectionProvider.fetchCollection().subscribe((data) => {
       this.collectionItems = data;
+      this.collectionItems.sort((prev, curr) => {
+        return (prev.Title > curr.Title) ? 1 : -1;
+      });
     });
   }
 
+  getDetails(item) {
+    this.collectionProvider.fetchIndividual(item.Title).subscribe((data) => {
+      this.navCtrl.push(DetailsPage, data);
+    });
+  }
 }
