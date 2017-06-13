@@ -28,6 +28,7 @@
         <span><strong>Cast: </strong>{{ media.Actors }}</span><br />
         <span><strong>Genres: </strong>{{ media.Genre }}</span><br />
         <span><strong>IMDB Rating: </strong>{{ media.imdbRating }}</span><br />
+        <span><strong>Released: </strong>{{ media.Released }}</span><br />
       </div>
     </ion-col>
   </ion-row>
@@ -40,10 +41,17 @@
   </ion-row>
   <ion-row>
     <ion-col>
-      <button ion-button color="danger" (click)="removeFromCollection(media)">Remove from Collection</button>
+      <button ion-button outline round block color="default" (click)="getRelated()">Get Related Titles</button>
     </ion-col>
+  </ion-row>
+  <ion-row>
     <ion-col>
-
+      <button ion-button outline round block color="secondary" (click)="getStreaming()">Find Streaming Sources</button>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <button ion-button outline round block color="danger" (click)="removeFromCollection(media, location)">Remove</button>
     </ion-col>
   </ion-row>
 </ion-content>

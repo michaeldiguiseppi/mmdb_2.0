@@ -22,13 +22,18 @@ export class CollectionProvider {
       .map((res) => res.json());
   }
 
+  fetchWatchlist() {
+    return this.http.get(this.baseUrl + '/users/57460e5025db1f1100ae751a/movies/watchlist')
+      .map((res) => res.json());
+  }
+
   fetchIndividual(title) {
     return this.http.get(this.baseUrl + '/movies/find/' + title)
       .map((res) => res.json());
   }
 
   removeFromCollection(item, location) {
-    return this.http.put(this.baseUrl + '/users/57460e5025db1f1100ae751a/movie/' + item.imdbId + '/delete/' + location, {})
+    return this.http.put(this.baseUrl + '/users/57460e5025db1f1100ae751a/movie/' + item.imdbID + '/delete/' + location, {})
     .map((res) => res.json());
   }
 }

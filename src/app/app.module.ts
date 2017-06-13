@@ -4,7 +4,6 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { HttpModule } from '@angular/http';
 
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
 import { CollectionPage } from '../pages/collection/collection';
 import { RandomPage } from '../pages/random/random';
 import { ScanPage } from '../pages/scan/scan';
@@ -22,7 +21,6 @@ import { CollectionProvider } from '../providers/collection/collection';
 @NgModule({
   declarations: [
     MyApp,
-    HomePage,
     CollectionPage,
     RandomPage,
     ScanPage,
@@ -41,7 +39,6 @@ import { CollectionProvider } from '../providers/collection/collection';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage,
     CollectionPage,
     RandomPage,
     ScanPage,

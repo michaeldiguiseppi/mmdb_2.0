@@ -15,5 +15,11 @@
 
 
 <ion-content padding>
-
+  <ion-list>
+    <div *ngFor="let item of watchlistItems">
+      <button ion-item (click)="getDetails(item, 'watchlist')">
+        {{ item.Title }}
+      </button>
+    </div>
+  </ion-list>
 </ion-content>

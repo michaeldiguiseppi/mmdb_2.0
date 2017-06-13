@@ -23,9 +23,9 @@ export class CollectionPage {
     this.getCollection();
   }
 
-ionViewWillEnter() {
-  this.getCollection();
-}
+  ionViewWillEnter() {
+    this.getCollection();
+  }
 
   getCollection() {
     this.collectionProvider.fetchCollection().subscribe((data) => {
@@ -36,9 +36,9 @@ ionViewWillEnter() {
     });
   }
 
-  getDetails(item) {
+  getDetails(item, location) {
     this.collectionProvider.fetchIndividual(item.Title).subscribe((data) => {
-      this.navCtrl.push(DetailsPage, data);
+      this.navCtrl.push(DetailsPage, {data: data, location: location});
     });
   }
 }

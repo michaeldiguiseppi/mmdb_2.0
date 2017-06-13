@@ -3,7 +3,6 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { HomePage } from '../pages/home/home';
 import { CollectionPage } from '../pages/collection/collection';
 import { RandomPage } from '../pages/random/random';
 import { ScanPage } from '../pages/scan/scan';
@@ -20,7 +19,7 @@ import { RegisterPage } from '../pages/register/register';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  rootPage: any = CollectionPage;
 
   pages: Array<{title: string, component: any}>;
 
@@ -29,7 +28,6 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Home', component: HomePage },
       { title: 'Collection', component: CollectionPage },
       { title: 'Watchlist', component: WatchlistPage },
       { title: 'Random', component: RandomPage },
