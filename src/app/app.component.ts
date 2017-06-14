@@ -28,11 +28,11 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
+      { title: 'Scan', component: ScanPage },
+      { title: 'Search', component: SearchPage },
       { title: 'Collection', component: CollectionPage },
       { title: 'Watchlist', component: WatchlistPage },
       { title: 'Random', component: RandomPage },
-      { title: 'Scan', component: ScanPage },
-      { title: 'Search', component: SearchPage },
       { title: 'Settings', component: SettingsPage },
       { title: 'Login', component: LoginPage },
       { title: 'Register', component: RegisterPage },
