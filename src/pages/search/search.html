@@ -15,12 +15,52 @@
 
 
 <ion-content padding>
-  <form (ngSubmit)="doSearch()">
+  <form (ngSubmit)="doSearch()" [hidden]="showAdvanced">
     <ion-list>
       <ion-item>
-        <ion-input type="text" value="Search by title" name="title" [(ngModel)]="title"></ion-input>
+        <ion-label>Title</ion-label>
+        <ion-input type="text" value="Search by title" name="title" [(ngModel)]="searchOptions.title"></ion-input>
       </ion-item>
     </ion-list>
     <button ion-button outline round block color="primary" type="submit">Search</button>
   </form>
+  <form (ngSubmit)="advancedSearch()" [hidden]="!showAdvanced">
+    <ion-list>
+      <ion-item>
+        <ion-label>Title</ion-label>
+        <ion-input type="text" value="Title" name="title" [(ngModel)]="searchOptions.title"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Year</ion-label>
+        <ion-input type="text" value="Year" name="year" [(ngModel)]="searchOptions.year"></ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-list radio-group [(ngModel)]="searchOptions.type" name="searchOptions">
+      <h4>Select a type:</h4>
+      <ion-item>
+        <ion-label>Movie</ion-label>
+        <ion-radio value="movie"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>Series</ion-label>
+        <ion-radio value="series"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>Episode</ion-label>
+        <ion-radio value="episode"></ion-radio>
+      </ion-item>
+    </ion-list>
+    <button ion-button outline round block color="primary" type="submit">Search</button>
+  </form>
+  <button ion-button outline round block color="secondary" (click)="showAdvancedSearch()">{{ showAdvanced ? 'Hide Advanced Search' : 'Show Advanced Search' }}</button>
+  <hr />
+  <h4 [hidden]="!advancedSearchResults.Search?.length">Results: </h4>
+  <ion-list>
+    <div *ngFor="let result of advancedSearchResults.Search">
+      <button ion-item (click)="getDetails(result)">
+        <img class="left-float" [src]="result.Poster !== 'N/A' ? result.Poster : '../../../assets/poster/poster-placeholder.png'" height="75px" width="50px" />
+        <h3 text-center class="results_title">{{ result.Title }} ({{ result.Year }})</h3>
+      </button>
+    </div>
+  </ion-list>
 </ion-content>

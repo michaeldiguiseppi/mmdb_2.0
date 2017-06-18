@@ -17,6 +17,7 @@ import { DetailsPage } from '../pages/details/details';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { CollectionProvider } from '../providers/collection/collection';
+import { SearchProvider } from '../providers/search/search';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { CollectionProvider } from '../providers/collection/collection';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    CollectionProvider
+    CollectionProvider,
+    SearchProvider
   ]
 })
 export class AppModule {}
