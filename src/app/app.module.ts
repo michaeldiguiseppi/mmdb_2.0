@@ -2,13 +2,15 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { HttpModule } from '@angular/http';
+import { IonicStorageModule } from '@ionic/storage';
 
-import { MyApp } from './app.component';
+
+import { MMDB_v2 } from './app.component';
 import { CollectionPage } from '../pages/collection/collection';
 import { RandomPage } from '../pages/random/random';
 import { ScanPage } from '../pages/scan/scan';
 import { SearchPage } from '../pages/search/search';
-import { WatchlistPage } from '../pages/watchlist/watchlist';
+import { WishlistPage } from '../pages/wishlist/wishlist';
 import { SettingsPage } from '../pages/settings/settings';
 import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
@@ -22,12 +24,12 @@ import { AuthProvider } from '../providers/auth/auth';
 
 @NgModule({
   declarations: [
-    MyApp,
+    MMDB_v2,
     CollectionPage,
     RandomPage,
     ScanPage,
     SearchPage,
-    WatchlistPage,
+    WishlistPage,
     SettingsPage,
     RegisterPage,
     LoginPage,
@@ -36,16 +38,17 @@ import { AuthProvider } from '../providers/auth/auth';
   imports: [
     BrowserModule,
     HttpModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MMDB_v2),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,
+    MMDB_v2,
     CollectionPage,
     RandomPage,
     ScanPage,
     SearchPage,
-    WatchlistPage,
+    WishlistPage,
     SettingsPage,
     RegisterPage,
     LoginPage,

@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { WatchlistPage } from './watchlist';
+import { WishlistPage } from './wishlist';
 
 @NgModule({
   declarations: [
-    WatchlistPage,
+    WishlistPage,
   ],
   imports: [
-    IonicPageModule.forChild(WatchlistPage),
+    IonicPageModule.forChild(WishlistPage),
   ],
   exports: [
-    WatchlistPage
+    WishlistPage
   ]
 })
-export class WatchlistPageModule {}
+export class WishlistPageModule {}

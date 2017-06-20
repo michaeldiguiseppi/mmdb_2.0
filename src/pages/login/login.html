@@ -15,6 +15,9 @@
 
 
 <ion-content padding>
+  <div *ngIf="errorMessage.status">
+    <ion-item [(color)]="errorMessage.status" text-center>{{ errorMessage.data }}</ion-item>
+  </div>
   <form (ngSubmit)="submitLogin()">
     <ion-list>
       <ion-item>

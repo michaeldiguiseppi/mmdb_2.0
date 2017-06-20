@@ -18,7 +18,8 @@
   <ion-list>
     <div *ngFor="let item of collectionItems">
       <button ion-item (click)="getDetails(item, 'collection')">
-        {{ item.Title }}
+        <img [src]="item.Poster !== 'N/A' ? item.Poster : '../../../assets/poster/poster-placeholder.png'" height="50px" width="35px" />
+        <span text-center class="results_title">{{ item.Title }} ({{ item.Year }})</span>
       </button>
     </div>
   </ion-list>

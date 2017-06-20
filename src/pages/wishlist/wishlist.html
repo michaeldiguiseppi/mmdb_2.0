@@ -1,5 +1,5 @@
 <!--
-  Generated template for the WatchlistPage page.
+  Generated template for the WishlistPage page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
@@ -9,15 +9,15 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Watchlist</ion-title>
+    <ion-title>Wishlist</ion-title>
   </ion-navbar>
 </ion-header>
 
 
 <ion-content padding>
   <ion-list>
-    <div *ngFor="let item of watchlistItems">
-      <button ion-item (click)="getDetails(item, 'watchlist')">
+    <div *ngFor="let item of wishlistItems">
+      <button ion-item (click)="getDetails(item, 'wishlist')">
         {{ item.Title }}
       </button>
     </div>

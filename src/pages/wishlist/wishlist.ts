@@ -5,31 +5,31 @@ import { CollectionProvider } from '../../providers/collection/collection';
 import { DetailsPage } from '../details/details';
 
 /**
- * Generated class for the WatchlistPage page.
+ * Generated class for the WishlistPage page.
  *
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
 @IonicPage()
 @Component({
-  selector: 'page-watchlist',
-  templateUrl: 'watchlist.html',
+  selector: 'page-wishlist',
+  templateUrl: 'wishlist.html',
 })
-export class WatchlistPage {
-  watchlistItems: any;
+export class WishlistPage {
+  wishlistItems: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private collectionProvider: CollectionProvider) {
     this.navCtrl = navCtrl;
-    this.getWatchlistItems();
+    this.getWishlistItems();
   }
 
   ionViewWillEnter() {
-    this.getWatchlistItems();
+    this.getWishlistItems();
   }
 
-  getWatchlistItems() {
-    this.collectionProvider.fetchWatchlist().subscribe((data) => {
-      this.watchlistItems = data;
+  getWishlistItems() {
+    this.collectionProvider.fetchWishlist().subscribe((data) => {
+      this.wishlistItems = data;
     });
   }
 

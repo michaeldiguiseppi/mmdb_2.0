@@ -22,8 +22,8 @@ export class CollectionProvider {
       .map((res) => res.json());
   }
 
-  fetchWatchlist() {
-    return this.http.get(this.baseUrl + '/users/57460e5025db1f1100ae751a/movies/watchlist')
+  fetchWishlist() {
+    return this.http.get(this.baseUrl + '/users/57460e5025db1f1100ae751a/movies/wishlist')
       .map((res) => res.json());
   }
 

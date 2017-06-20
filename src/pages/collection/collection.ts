@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { CollectionProvider } from '../../providers/collection/collection';
 
 import { DetailsPage } from '../details/details';
+import { AuthProvider } from '../../providers/auth/auth';
 
 /**
  * Generated class for the CollectionPage page.
@@ -18,8 +19,9 @@ import { DetailsPage } from '../details/details';
 export class CollectionPage {
   collectionItems: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private collectionProvider: CollectionProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private collectionProvider: CollectionProvider, private authProvider: AuthProvider) {
     this.navCtrl = navCtrl;
+    this.authProvider = authProvider;
     this.getCollection();
   }
 
