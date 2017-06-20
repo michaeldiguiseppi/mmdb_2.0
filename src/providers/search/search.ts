@@ -15,8 +15,8 @@ export class SearchProvider {
 
   constructor(public http: Http) {
     this.http = http;
-    // this.baseUrl = "http://mmdb-api.herokuapp.com";
-    this.baseUrl = 'http://localhost:3000';
+    this.baseUrl = "http://mmdb-api.herokuapp.com";
+    // this.baseUrl = 'http://localhost:3000';
   }
 
   doSearch(query) {
