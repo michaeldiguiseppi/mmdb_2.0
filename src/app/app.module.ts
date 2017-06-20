@@ -18,6 +18,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { CollectionProvider } from '../providers/collection/collection';
 import { SearchProvider } from '../providers/search/search';
+import { AuthProvider } from '../providers/auth/auth';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { SearchProvider } from '../providers/search/search';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     CollectionProvider,
-    SearchProvider
+    SearchProvider,
+    AuthProvider
   ]
 })
 export class AppModule {}

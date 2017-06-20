@@ -17,7 +17,7 @@
 <ion-content padding>
   <ion-row>
     <ion-col col-6>
-      <img [src]="media.Poster" />
+      <img [src]="media.Poster !== 'N/A' ? media.Poster : '../../../assets/poster/poster-placeholder.png'"/>
     </ion-col>
     <ion-col col-6>
       <div class="details">
@@ -39,19 +39,28 @@
       </p>
     </ion-col>
   </ion-row>
-  <ion-row>
-    <ion-col>
-      <button ion-button outline round block color="default" (click)="getRelated()">Get Related Titles</button>
-    </ion-col>
-  </ion-row>
-  <ion-row>
-    <ion-col>
-      <button ion-button outline round block color="secondary" (click)="getStreaming()">Find Streaming Sources</button>
-    </ion-col>
-  </ion-row>
-  <ion-row>
-    <ion-col>
-      <button ion-button outline round block color="danger" (click)="removeFromCollection(media, location)">Remove</button>
-    </ion-col>
-  </ion-row>
+  <div *ngIf="location != 'Search'">
+    <ion-row>
+      <ion-col>
+        <button ion-button outline round block color="default" (click)="getRelated()">Get Related Titles</button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <button ion-button outline round block color="secondary" (click)="getStreaming()">Find Streaming Sources</button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <button ion-button outline round block color="danger" (click)="removeFromCollection(media, location)">Remove</button>
+      </ion-col>
+    </ion-row>
+  </div>
+  <div *ngIf="location == 'Search'">
+    <ion-row>
+      <ion-col>
+        <button ion-button outline round block color="secondary" (click)="save(media)">Save</button>
+      </ion-col>
+    </ion-row>
+  </div>
 </ion-content>

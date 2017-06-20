@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { SearchProvider } from '../../providers/search/search';
+import { DetailsPage } from '../details/details';
+
 
 /**
  * Generated class for the SearchPage page.
@@ -18,14 +20,15 @@ export class SearchPage {
   searchOptions: any;
   showAdvanced: boolean;
   advancedSearchResults: object;
-  searchResults: object;
-  errorMessage: string;
+  errorMessage: any;
+  lastSearch: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public searchProvider: SearchProvider) {
     this.searchProvider = searchProvider;
     this.searchOptions = {
       type: 'movie',
     };
+    this.errorMessage = {};
     this.advancedSearchResults = {
       Search: [],
     }
@@ -37,28 +40,47 @@ export class SearchPage {
   }
 
   doSearch() {
-    console.log(this.searchOptions);
     this.searchProvider.doSearch(this.searchOptions).subscribe((data) => {
-      console.log(data);
-      this.searchResults = data;
+      this.navCtrl.push(DetailsPage, {data: data, location: 'Search'});
+      this.searchOptions = {
+        type: 'movie',
+      };
+      this.errorMessage = {};
+    },
+    (err) => {
+      let errors = JSON.parse(err._body);
+      this.errorMessage = errors;
     });
   }
 
   advancedSearch() {
-    console.log(this.searchOptions);
-    if (this.searchOptions.title) {
+    // if (this.searchOptions.title) {
       this.searchProvider.searchWithParams(this.searchOptions).subscribe((data) => {
         console.log(data);
+        if (data.Error) {
+          this.errorMessage = {
+            status: 'danger',
+            data: 'No results found. Please try again.'
+          }
+          return this.errorMessage;
+        }
         data.Search.forEach((item) => {
         })
         this.advancedSearchResults = data;
+        this.errorMessage = {};
+      },
+      (err) => {
+        let errors = JSON.parse(err._body);
+        this.errorMessage = errors;
       });
-      this.searchOptions = {
-        type: 'movie',
-      }
-    } else {
-      this.advancedSearchResults = [];
-      this.errorMessage = "Please enter a title."
+      this.lastSearch = this.searchOptions.title;
+  }
+
+  getDetails(result) {
+    if (result.imdbID) {
+      this.searchProvider.getDetails(result.imdbID).subscribe((data) => {
+        this.navCtrl.push(DetailsPage, {data: data, location: 'Search'});
+      });
     }
   }
 

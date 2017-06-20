@@ -54,6 +54,35 @@ export class DetailsPage {
     alert.present();
   }
 
+  save(media) {
+    let alert = this.alertController.create({
+      title: 'Save Item',
+      message: 'Where would you like to save this item?',
+      buttons: [
+        {
+          text: 'Wishlist',
+          handler: () => {
+            console.log("Add to Wishlist");
+          }
+        },
+        {
+          text: 'Collection',
+          handler: () => {
+            console.log("Add to Collection");
+          }
+        },
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+
+          }
+        },
+      ]
+    });
+    alert.present();
+  }
+
   getRelated() {
     console.log('Getting related titles');
   }

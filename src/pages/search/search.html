@@ -15,6 +15,9 @@
 
 
 <ion-content padding>
+  <div *ngIf="errorMessage.status">
+    <ion-item [(color)]="errorMessage.status">{{ errorMessage.data }}</ion-item>
+  </div>
   <form (ngSubmit)="doSearch()" [hidden]="showAdvanced">
     <ion-list>
       <ion-item>
@@ -54,7 +57,7 @@
   </form>
   <button ion-button outline round block color="secondary" (click)="showAdvancedSearch()">{{ showAdvanced ? 'Hide Advanced Search' : 'Show Advanced Search' }}</button>
   <hr />
-  <h4 [hidden]="!advancedSearchResults.Search?.length">Results: </h4>
+  <h4 [hidden]="!advancedSearchResults.Search?.length">Results for {{ lastSearch }}: </h4>
   <ion-list>
     <div *ngFor="let result of advancedSearchResults.Search">
       <button ion-item (click)="getDetails(result)">

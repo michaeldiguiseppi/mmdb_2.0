@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
 
 /*
   Generated class for the SearchProvider provider.
@@ -28,7 +29,6 @@ export class SearchProvider {
     params.type = params.type || '';
     return this.http.get(this.baseUrl + '/movies/search/' + params.title + '/' + params.type + '/' + params.year)
       .map((res) => res.json());
-
   }
 
   getDetails(id) {
