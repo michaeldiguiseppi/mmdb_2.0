@@ -16,6 +16,7 @@ import { DetailsPage } from '../details/details';
   templateUrl: 'wishlist.html',
 })
 export class WishlistPage {
+  searchTerm: any = '';
   wishlistItems: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private collectionProvider: CollectionProvider) {
@@ -40,6 +41,10 @@ export class WishlistPage {
     this.collectionProvider.fetchIndividual(item.Title).subscribe((data) => {
       this.navCtrl.push(DetailsPage, {data: data, location: location});
     });
+  }
+
+  setFilteredItems(ev) {
+    this.searchTerm = ev.target.value;
   }
 
   removeItem(item, location) {

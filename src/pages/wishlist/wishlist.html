@@ -15,8 +15,12 @@
 
 
 <ion-content padding>
+  <ion-searchbar
+    (ionInput)="setFilteredItems($event)"
+  >
+  </ion-searchbar>
   <ion-list>
-    <ion-item-sliding *ngFor="let item of wishlistItems">
+    <ion-item-sliding *ngFor="let item of wishlistItems | filterItems: searchTerm">
         <button ion-item (click)="getDetails(item, 'wishlist')">
           <img [src]="item.Poster !== 'N/A' ? item.Poster : '../../assets/poster/poster-placeholder.png'" height="50px" width="35px" />
           <span text-center class="results_title">{{ item.Title }} ({{ item.Year }})</span>

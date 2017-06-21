@@ -21,6 +21,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { CollectionProvider } from '../providers/collection/collection';
 import { SearchProvider } from '../providers/search/search';
 import { AuthProvider } from '../providers/auth/auth';
+import { FilterItemsPipe } from '../pipes/filter-items/filter-items';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { AuthProvider } from '../providers/auth/auth';
     SettingsPage,
     RegisterPage,
     LoginPage,
-    DetailsPage
+    DetailsPage,
+    FilterItemsPipe
   ],
   imports: [
     BrowserModule,
