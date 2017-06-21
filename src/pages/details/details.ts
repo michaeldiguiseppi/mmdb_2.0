@@ -4,6 +4,8 @@ import { CollectionProvider } from '../../providers/collection/collection';
 
 import { WishlistPage } from '../../pages/wishlist/wishlist';
 import { CollectionPage } from '../../pages/collection/collection';
+import { SearchPage } from '../../pages/search/search';
+
 
 
 /**
@@ -21,75 +23,37 @@ export class DetailsPage {
   media: object;
   location: string;
   arrayOfKeys: string[];
+  showSaveButtons: boolean;
+  showRemoveButtons: boolean;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public collectionProvider: CollectionProvider, public alertController: AlertController) {
     this.media = navParams.data.data;
     this.location = navParams.data.location;
     this.collectionProvider = collectionProvider;
     this.alertController = alertController;
-    console.log(this.media);
+  }
+
+  showRemoveButtonsHandler() {
+    this.showRemoveButtons = !this.showRemoveButtons;
   }
 
   removeFromCollection(item, location) {
-    let alert = this.alertController.create({
-      title: 'Remove Item',
-      message: 'Are you sure you want to remove this item from your ' + location + '?',
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel',
-          handler: () => {
-          }
-        },
-        {
-          text: 'Remove',
-          handler: () => {
-            this.collectionProvider.removeFromCollection(item, location).subscribe((res) => {
-              if (res.status == 'success') {
-                this.navCtrl.pop();
-              } else {
-                console.log(res);
-              }
-            });
-          }
-        }
-      ]
+    this.collectionProvider.removeFromCollection(item, location).subscribe((res) => {
+      this.navCtrl.pop();
     });
-    alert.present();
   }
 
-  save(media) {
-    this.media = media;
-    let alert = this.alertController.create({
-      title: 'Save Item',
-      message: 'Where would you like to save this item?',
-      buttons: [
-        {
-          text: 'Wishlist',
-          handler: () => {
-            this.collectionProvider.addToCollection(this.media, 'wishlist').subscribe((data) => {
-              this.navCtrl.setRoot(WishlistPage);
-            });
-          }
-        },
-        {
-          text: 'Collection',
-          handler: (media) => {
-            this.collectionProvider.addToCollection(this.media, 'collection').subscribe((data) => {
-              this.navCtrl.setRoot(CollectionPage);
-            });
-          }
-        },
-        {
-          text: 'Cancel',
-          role: 'cancel',
-          handler: () => {
+  showSaveButtonsHandler() {
+    this.showSaveButtons = !this.showSaveButtons;
+  }
 
-          }
-        },
-      ]
+  save(media, location) {
+    this.collectionProvider.addToCollection(media, location).subscribe((data) => {
+      let page = (location == 'collection' ? CollectionPage : WishlistPage );
+      this.navCtrl.setRoot(page).then(() => {
+        this.navCtrl.push(DetailsPage, { data: media, location: location })
+      });
     });
-    alert.present();
   }
 
   getRelated() {

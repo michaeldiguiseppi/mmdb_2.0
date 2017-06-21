@@ -30,13 +30,14 @@
   <form (ngSubmit)="advancedSearch()" [hidden]="!showAdvanced">
     <ion-list>
       <ion-item>
-        <ion-label>Title</ion-label>
+        <ion-label>Title<span class="red">*</span></ion-label>
         <ion-input type="text" value="Title" name="title" [(ngModel)]="searchOptions.title"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label>Year</ion-label>
         <ion-input type="text" value="Year" name="year" [(ngModel)]="searchOptions.year"></ion-input>
       </ion-item>
+      <p text-left><span class="red">*</span> required</p>
     </ion-list>
     <ion-list radio-group [(ngModel)]="searchOptions.type" name="searchOptions">
       <h4>Select a type:</h4>

@@ -46,6 +46,12 @@ export class CollectionPage {
   }
 
   setFilteredItems() {
-        this.collectionItems = this.collectionProvider.filterItems(this.searchTerm, this.collectionItems);
-    }
+    this.collectionItems = this.collectionProvider.filterItems(this.searchTerm, this.collectionItems);
+  }
+
+  removeItem(item, location) {
+    this.collectionProvider.removeFromCollection(item, location).subscribe((res) => {
+      this.getCollection();
+    });
+  }
 }

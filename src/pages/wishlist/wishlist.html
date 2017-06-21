@@ -16,11 +16,14 @@
 
 <ion-content padding>
   <ion-list>
-    <div *ngFor="let item of wishlistItems">
-      <button ion-item (click)="getDetails(item, 'wishlist')">
-        <img [src]="item.Poster !== 'N/A' ? item.Poster : '../../../assets/poster/poster-placeholder.png'" height="50px" width="35px" />
-        <span text-center class="results_title">{{ item.Title }} ({{ item.Year }})</span>
-      </button>
-    </div>
+    <ion-item-sliding *ngFor="let item of wishlistItems">
+        <button ion-item (click)="getDetails(item, 'wishlist')">
+          <img [src]="item.Poster !== 'N/A' ? item.Poster : '../../assets/poster/poster-placeholder.png'" height="50px" width="35px" />
+          <span text-center class="results_title">{{ item.Title }} ({{ item.Year }})</span>
+        </button>
+      <ion-item-options>
+        <button ion-button color="danger" (click)="removeItem(item, 'wishlist')"><ion-icon name="trash"></ion-icon> Delete</button>
+      </ion-item-options>
+    </ion-item-sliding>
   </ion-list>
 </ion-content>

@@ -41,4 +41,10 @@ export class WishlistPage {
       this.navCtrl.push(DetailsPage, {data: data, location: location});
     });
   }
+
+  removeItem(item, location) {
+    this.collectionProvider.removeFromCollection(item, location).subscribe((res) => {
+      this.getWishlistItems();
+    });
+  }
 }
