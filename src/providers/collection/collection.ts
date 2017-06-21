@@ -39,8 +39,16 @@ export class CollectionProvider {
   }
 
   addToCollection(item, location) {
-    console.log(item);
-    return this.http.post(this.baseUrl + '/users/57460e5025db1f1100ae751a/movie/add/' + location, { item })
+    return this.http.post(this.baseUrl + '/users/57460e5025db1f1100ae751a/movie/add/' + location, item)
       .map((res) => res.json());
+  }
+
+  filterItems(searchTerm, items) {
+    console.log(searchTerm);
+    console.log(items);
+    return items.filter((item) => {
+        console.log(item);
+        return item.Title.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
+    });
   }
 }

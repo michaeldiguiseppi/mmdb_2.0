@@ -20,14 +20,14 @@ export class SearchProvider {
   }
 
   doSearch(query) {
-    return this.http.get(this.baseUrl + '/movies/find/' + query.title)
+    return this.http.get(this.baseUrl + '/movies/find/' + query.title + '*')
       .map((res) => res.json());
   }
 
   searchWithParams(params) {
     params.year = params.year || '';
     params.type = params.type || '';
-    return this.http.get(this.baseUrl + '/movies/search/' + params.title + '/' + params.type + '/' + params.year)
+    return this.http.get(this.baseUrl + '/movies/search/' + params.title + '*/' + params.type + '/' + params.year)
       .map((res) => res.json());
   }
 

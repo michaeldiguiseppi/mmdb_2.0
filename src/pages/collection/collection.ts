@@ -18,6 +18,7 @@ import { AuthProvider } from '../../providers/auth/auth';
 })
 export class CollectionPage {
   collectionItems: any;
+  searchTerm: string = '';
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private collectionProvider: CollectionProvider, private authProvider: AuthProvider) {
     this.navCtrl = navCtrl;
@@ -43,4 +44,8 @@ export class CollectionPage {
       this.navCtrl.push(DetailsPage, {data: data, location: location});
     });
   }
+
+  setFilteredItems() {
+        this.collectionItems = this.collectionProvider.filterItems(this.searchTerm, this.collectionItems);
+    }
 }

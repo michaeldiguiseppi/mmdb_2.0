@@ -2,6 +2,10 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { CollectionProvider } from '../../providers/collection/collection';
 
+import { WishlistPage } from '../../pages/wishlist/wishlist';
+import { CollectionPage } from '../../pages/collection/collection';
+
+
 /**
  * Generated class for the DetailsPage page.
  *
@@ -63,20 +67,16 @@ export class DetailsPage {
         {
           text: 'Wishlist',
           handler: () => {
-            console.log("Add to Wishlist");
-            console.log(this.media);
             this.collectionProvider.addToCollection(this.media, 'wishlist').subscribe((data) => {
-              console.log(data);
+              this.navCtrl.setRoot(WishlistPage);
             });
           }
         },
         {
           text: 'Collection',
           handler: (media) => {
-            console.log("Add to Collection");
-            console.log(this.media);
             this.collectionProvider.addToCollection(this.media, 'collection').subscribe((data) => {
-              console.log(data);
+              this.navCtrl.setRoot(CollectionPage);
             });
           }
         },

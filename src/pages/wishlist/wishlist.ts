@@ -30,6 +30,9 @@ export class WishlistPage {
   getWishlistItems() {
     this.collectionProvider.fetchWishlist().subscribe((data) => {
       this.wishlistItems = data;
+      this.wishlistItems.sort((prev, curr) => {
+        return (prev.Title > curr.Title) ? 1 : -1;
+      });
     });
   }
 
