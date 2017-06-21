@@ -55,6 +55,7 @@ export class DetailsPage {
   }
 
   save(media) {
+    this.media = media;
     let alert = this.alertController.create({
       title: 'Save Item',
       message: 'Where would you like to save this item?',
@@ -63,12 +64,20 @@ export class DetailsPage {
           text: 'Wishlist',
           handler: () => {
             console.log("Add to Wishlist");
+            console.log(this.media);
+            this.collectionProvider.addToCollection(this.media, 'wishlist').subscribe((data) => {
+              console.log(data);
+            });
           }
         },
         {
           text: 'Collection',
-          handler: () => {
+          handler: (media) => {
             console.log("Add to Collection");
+            console.log(this.media);
+            this.collectionProvider.addToCollection(this.media, 'collection').subscribe((data) => {
+              console.log(data);
+            });
           }
         },
         {

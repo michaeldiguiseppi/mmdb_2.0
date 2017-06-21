@@ -15,6 +15,7 @@ export class CollectionProvider {
   constructor(public http: Http) {
     this.http = http;
     this.baseUrl = "http://mmdb-api.herokuapp.com";
+    // this.baseUrl = "http://localhost:3000";
   }
 
   fetchCollection() {
@@ -34,6 +35,12 @@ export class CollectionProvider {
 
   removeFromCollection(item, location) {
     return this.http.put(this.baseUrl + '/users/57460e5025db1f1100ae751a/movie/' + item.imdbID + '/delete/' + location, {})
-    .map((res) => res.json());
+      .map((res) => res.json());
+  }
+
+  addToCollection(item, location) {
+    console.log(item);
+    return this.http.post(this.baseUrl + '/users/57460e5025db1f1100ae751a/movie/add/' + location, { item })
+      .map((res) => res.json());
   }
 }
