@@ -46,8 +46,7 @@ export class CollectionPage {
   }
 
   setFilteredItems(ev) {
-    this.searchTerm = ev.target.value;
-    console.log(this.searchTerm)
+    this.searchTerm = ev.target.value.toLowerCase();
   }
 
   removeItem(item, location) {

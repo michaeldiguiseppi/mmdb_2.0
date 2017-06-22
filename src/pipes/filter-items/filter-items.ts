@@ -11,12 +11,12 @@ import { Pipe, PipeTransform } from '@angular/core';
   pure: false,
 })
 export class FilterItemsPipe implements PipeTransform {
-  transform(items: any[], args: any[]): any {
+  transform(items: any[], args: any): any {
     if (!args || !items) {
       return items;
     }
     return items.filter((item) => {
-      return item.Title.indexOf(args) > -1 || item.Actors.indexOf(args) > -1;
+      return item.Title.toLowerCase().indexOf(args.toLowerCase()) > -1 || item.Actors.toLowerCase().indexOf(args.toLowerCase()) > -1;
     });
   }
 }
