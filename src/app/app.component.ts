@@ -3,6 +3,7 @@ import { Nav, Platform, AlertController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Storage } from '@ionic/storage';
+import { Keyboard } from '@ionic-native/keyboard';
 
 import { CollectionPage } from '../pages/collection/collection';
 import { RandomPage } from '../pages/random/random';
@@ -24,7 +25,7 @@ export class MMDB_v2 {
   rootPage: any = LoginPage;
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, private storage: Storage, private alertCtrl: AlertController, private authProvider: AuthProvider) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, private storage: Storage, private alertCtrl: AlertController, private authProvider: AuthProvider, public keyboard: Keyboard) {
     this.alertCtrl = alertCtrl;
     this.authProvider = authProvider;
     this.initializeApp();
@@ -45,6 +46,7 @@ export class MMDB_v2 {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      this.keyboard.hideKeyboardAccessoryBar(false);
     });
   }
 
