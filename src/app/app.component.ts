@@ -39,7 +39,6 @@ export class MMDB_v2 {
       { title: 'Random', component: RandomPage },
       { title: 'Settings', component: SettingsPage },
       { title: 'Login', component: LoginPage },
-      // { title: 'Register', component: RegisterPage },
     ];
   }
 
