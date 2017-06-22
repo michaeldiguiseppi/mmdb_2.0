@@ -21,9 +21,8 @@ import { AuthProvider } from '../providers/auth/auth';
 })
 export class MMDB_v2 {
   @ViewChild(Nav) nav: Nav;
-  rootPage: any = CollectionPage;
+  rootPage: any = LoginPage;
   pages: Array<{title: string, component: any}>;
-  user: boolean;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, private storage: Storage, private alertCtrl: AlertController, private authProvider: AuthProvider) {
     this.alertCtrl = alertCtrl;
@@ -32,13 +31,11 @@ export class MMDB_v2 {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      // { title: 'Scan', component: ScanPage },
       { title: 'Search', component: SearchPage },
       { title: 'Collection', component: CollectionPage },
       { title: 'Wishlist', component: WishlistPage },
       { title: 'Random', component: RandomPage },
       { title: 'Settings', component: SettingsPage },
-      { title: 'Login', component: LoginPage },
     ];
   }
 
@@ -74,7 +71,6 @@ export class MMDB_v2 {
           handler: () => {
             console.log('Logged out');
             this.authProvider.logout();
-            this.user = false;
           }
         }
       ]

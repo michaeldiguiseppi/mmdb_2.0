@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
 import { CollectionProvider } from '../../providers/collection/collection';
+import { AuthProvider } from '../../providers/auth/auth';
 
 import { DetailsPage } from '../details/details';
 
@@ -18,8 +20,9 @@ import { DetailsPage } from '../details/details';
 export class WishlistPage {
   searchTerm: any = '';
   wishlistItems: any;
+  user: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private collectionProvider: CollectionProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private collectionProvider: CollectionProvider, public authProvider: AuthProvider) {
     this.navCtrl = navCtrl;
     this.getWishlistItems();
   }
@@ -27,6 +30,15 @@ export class WishlistPage {
   ionViewWillEnter() {
     this.getWishlistItems();
   }
+
+  // ionViewCanEnter(): boolean {
+  //   console.log(this.user);
+  //   if (this.user.email) {
+  //     return true;
+  //   } else {
+  //     return false;
+  //   }
+  // }
 
   getWishlistItems() {
     this.collectionProvider.fetchWishlist().subscribe((data) => {

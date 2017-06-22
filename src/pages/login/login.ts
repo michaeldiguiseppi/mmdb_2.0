@@ -4,7 +4,6 @@ import { Storage } from '@ionic/storage';
 
 import { RegisterPage } from '../register/register';
 import { CollectionPage } from '../collection/collection';
-
 import { AuthProvider } from '../../providers/auth/auth';
 
 /**
@@ -29,13 +28,20 @@ export class LoginPage {
     this.errorMessage = {};
   }
 
-  submitLogin() {
-    this.authProvider.login(this.user).subscribe((data) => {
-      if (data.message.user) {
-        this.authProvider.setUserInfo(data);
+  ionViewDidLoad() {
+    console.log(this.authProvider.checkAuthentication());
+    if (this.authProvider.checkAuthentication()) {
+      console.log("Authorized");
+      this.navCtrl.setRoot(CollectionPage);
+    } else {
+      console.log("Unauthorized");
+    }
+  }
+
+  login() {
+    this.authProvider.login(this.user).then((data) => {
         this.navCtrl.setRoot(CollectionPage);
         this.errorMessage = {};
-      }
     },
     (err) => {
       this.errorMessage = {
@@ -48,5 +54,4 @@ export class LoginPage {
   goToRegister() {
     this.navCtrl.push(RegisterPage);
   }
-
 }

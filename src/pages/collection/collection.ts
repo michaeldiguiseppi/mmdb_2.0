@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
 import { CollectionProvider } from '../../providers/collection/collection';
 
 import { DetailsPage } from '../details/details';
+import { LoginPage } from '../login/login';
 import { AuthProvider } from '../../providers/auth/auth';
 
 /**
@@ -19,8 +21,9 @@ import { AuthProvider } from '../../providers/auth/auth';
 export class CollectionPage {
   collectionItems: any = [];
   searchTerm: string = '';
+  user: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private collectionProvider: CollectionProvider, private authProvider: AuthProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private collectionProvider: CollectionProvider, private authProvider: AuthProvider, public storage: Storage) {
     this.navCtrl = navCtrl;
     this.authProvider = authProvider;
     this.getCollection();
@@ -29,6 +32,16 @@ export class CollectionPage {
   ionViewWillEnter() {
     this.getCollection();
   }
+
+  // ionViewCanEnter() {
+  //   console.log(this.user);
+  //   if (this.user) {
+  //     return true;
+  //   } else {
+  //     this.navCtrl.setRoot(LoginPage);
+  //     return false;
+  //   }
+  // }
 
   getCollection() {
     this.collectionProvider.fetchCollection().subscribe((data) => {
