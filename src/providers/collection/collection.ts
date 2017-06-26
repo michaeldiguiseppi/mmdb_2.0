@@ -18,7 +18,9 @@ export class CollectionProvider {
     this.http = http;
     this.baseUrl = "http://mmdb-api.herokuapp.com";
     // this.baseUrl = "http://localhost:3000";
+    this.user = {};
     this.storage.get('user').then((data) => {
+      console.log(data._id, data.email);
       this.user = data;
     });
   }
