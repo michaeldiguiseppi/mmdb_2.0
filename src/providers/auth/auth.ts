@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import { Storage } from '@ionic/storage';
+import { Events } from 'ionic-angular';
 import 'rxjs/add/operator/map';
 
 /*
@@ -15,9 +16,10 @@ export class AuthProvider {
   public token: any;
   public user: any;
 
-  constructor(public http: Http, private storage: Storage) {
+  constructor(public http: Http, private storage: Storage, public events: Events) {
     this.http = http;
     this.storage = storage;
+    this.events = events;
     this.baseUrl = "http://mmdb-api.herokuapp.com";
   }
 
@@ -32,6 +34,7 @@ export class AuthProvider {
           this.token = data.message.token;
           this.storage.set('token', data.message.token);
           this.storage.set('user', data.message.user);
+          this.events.publish('user:register');
           resolve(data.message);
         }, (err) => {
           reject(err);
@@ -50,6 +53,7 @@ export class AuthProvider {
           this.token = data.message.token;
           this.storage.set('token', data.message.token);
           this.storage.set('user', data.message.user);
+          this.events.publish('user:login');
           resolve(data.message);
         }, (err) => {
           reject(err);
@@ -60,19 +64,12 @@ export class AuthProvider {
   logout() {
     this.storage.set('user', '');
     this.storage.set('token', '');
+    this.events.publish('user:logout');
   }
 
-  checkAuthentication() {
-    console.log(this.storage.get('token'));
-    return this.storage.get('token').then((value) => {
-      if (value) {
-        this.token = JSON.parse(value);
-        if (this.token) {
-          return true;
-        } else {
-          return false;
-        }
-      }
+  hasLoggedIn(): Promise<boolean> {
+    return this.storage.get('user').then((value) => {
+      return value ? true : false;
     });
-  }
+  };
 }

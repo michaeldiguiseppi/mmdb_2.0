@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
 import { RegisterPage } from '../register/register';
@@ -21,21 +21,23 @@ export class LoginPage {
   user: object;
   errorMessage: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public authProvider: AuthProvider, private storage: Storage) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public authProvider: AuthProvider, private storage: Storage, public events: Events) {
     this.user = {};
     this.authProvider = authProvider;
     this.storage = storage;
     this.errorMessage = {};
+    this.events = events;
   }
 
   ionViewDidLoad() {
-    console.log(this.authProvider.checkAuthentication());
-    if (this.authProvider.checkAuthentication()) {
-      console.log("Authorized");
-      this.navCtrl.setRoot(CollectionPage);
-    } else {
-      console.log("Unauthorized");
-    }
+    this.storage.get('token').then((data) => {
+      if (data) {
+        console.log("Authorized");
+        this.navCtrl.setRoot(CollectionPage);
+      } else {
+        console.log("Unauthorized");
+      }
+    });
   }
 
   login() {
