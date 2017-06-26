@@ -26,22 +26,15 @@ export class CollectionPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, private collectionProvider: CollectionProvider, private authProvider: AuthProvider, public storage: Storage) {
     this.navCtrl = navCtrl;
     this.authProvider = authProvider;
-    this.getCollection();
   }
 
   ionViewWillEnter() {
-    this.getCollection();
+    this.storage.get('user').then((data) => {
+      if (data._id) {
+        this.getCollection();
+      }
+    });
   }
-
-  // ionViewCanEnter() {
-  //   console.log(this.user);
-  //   if (this.user) {
-  //     return true;
-  //   } else {
-  //     this.navCtrl.setRoot(LoginPage);
-  //     return false;
-  //   }
-  // }
 
   getCollection() {
     this.collectionProvider.fetchCollection().subscribe((data) => {
@@ -49,6 +42,9 @@ export class CollectionPage {
       this.collectionItems.sort((prev, curr) => {
         return (prev.Title > curr.Title) ? 1 : -1;
       });
+    }, (err) => {
+      console.log(err);
+      this.collectionItems = [];
     });
   }
 
