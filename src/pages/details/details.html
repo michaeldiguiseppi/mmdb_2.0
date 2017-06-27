@@ -64,7 +64,7 @@
       </ion-col>
     </ion-row>
   </div>
-  <div *ngIf="location == 'Search'">
+  <div *ngIf="location == 'Search' && user">
     <ion-row>
       <ion-col>
         <button ion-button outline round block color="secondary" (click)="showSaveButtonsHandler()">Save</button>

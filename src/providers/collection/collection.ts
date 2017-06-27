@@ -24,7 +24,6 @@ export class CollectionProvider {
 
   fetchUser() {
     return this.storage.get('user').then((data) => {
-      console.log(data._id, data.email);
       this.user = data;
     });
   }
@@ -41,8 +40,8 @@ export class CollectionProvider {
       .map((res) => res.json());
   }
 
-  fetchIndividual(title) {
-    return this.http.get(this.baseUrl + '/movies/find/' + title)
+  fetchIndividual(id) {
+    return this.http.get(this.baseUrl + '/movies/searchById/' + id)
       .map((res) => res.json());
   }
 

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { CollectionProvider } from '../../providers/collection/collection';
+import { Storage } from '@ionic/storage';
 
 import { WishlistPage } from '../../pages/wishlist/wishlist';
 import { CollectionPage } from '../../pages/collection/collection';
@@ -24,12 +25,19 @@ export class DetailsPage {
   arrayOfKeys: string[];
   showSaveButtons: boolean;
   showRemoveButtons: boolean;
+  user: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public collectionProvider: CollectionProvider, public alertController: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public collectionProvider: CollectionProvider, public alertController: AlertController, public storage: Storage) {
     this.media = navParams.data.data;
     this.location = navParams.data.location;
     this.collectionProvider = collectionProvider;
     this.alertController = alertController;
+    this.storage = storage;
+    this.storage.get('user').then((data) => {
+      if (data._id) {
+        this.user = data;
+      }
+    });
   }
 
   showRemoveButtonsHandler() {

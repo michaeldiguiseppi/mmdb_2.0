@@ -46,7 +46,7 @@ export class CollectionPage {
   }
 
   getDetails(item, location) {
-    this.collectionProvider.fetchIndividual(item.Title).subscribe((data) => {
+    this.collectionProvider.fetchIndividual(item.imdbID).subscribe((data) => {
       this.navCtrl.push(DetailsPage, {data: data, location: location});
     });
   }
