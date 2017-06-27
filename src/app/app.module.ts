@@ -3,6 +3,7 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { HttpModule } from '@angular/http';
 import { IonicStorageModule } from '@ionic/storage';
+import { Keyboard } from '@ionic-native/keyboard';
 
 
 import { MMDB_v2 } from './app.component';
@@ -59,6 +60,7 @@ import { FilterItemsPipe } from '../pipes/filter-items/filter-items';
   providers: [
     StatusBar,
     SplashScreen,
+    Keyboard,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     CollectionProvider,
     SearchProvider,

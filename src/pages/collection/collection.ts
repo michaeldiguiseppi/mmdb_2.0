@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
 import { CollectionProvider } from '../../providers/collection/collection';
 
 import { DetailsPage } from '../details/details';
 import { AuthProvider } from '../../providers/auth/auth';
-
+import { LoginPage } from '../login/login';
 /**
  * Generated class for the CollectionPage page.
  *
@@ -19,15 +20,17 @@ import { AuthProvider } from '../../providers/auth/auth';
 export class CollectionPage {
   collectionItems: any = [];
   searchTerm: string = '';
+  user: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private collectionProvider: CollectionProvider, private authProvider: AuthProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private collectionProvider: CollectionProvider, private authProvider: AuthProvider, public storage: Storage) {
     this.navCtrl = navCtrl;
     this.authProvider = authProvider;
-    this.getCollection();
   }
 
   ionViewWillEnter() {
-    this.getCollection();
+    this.collectionProvider.fetchUser().then((data) => {
+      this.getCollection();
+    });
   }
 
   getCollection() {
@@ -36,6 +39,9 @@ export class CollectionPage {
       this.collectionItems.sort((prev, curr) => {
         return (prev.Title > curr.Title) ? 1 : -1;
       });
+    }, (err) => {
+      console.log(err);
+      this.collectionItems = [];
     });
   }
 

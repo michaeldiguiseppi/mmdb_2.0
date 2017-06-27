@@ -18,7 +18,7 @@
   <div *ngIf="errorMessage.status">
     <ion-item [(color)]="errorMessage.status" text-center>{{ errorMessage.data }}</ion-item>
   </div>
-  <form (ngSubmit)="submitLogin()">
+  <form (ngSubmit)="login()">
     <ion-list>
       <ion-item>
         <ion-label fixed>Email</ion-label>
