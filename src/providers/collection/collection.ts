@@ -19,18 +19,24 @@ export class CollectionProvider {
     this.baseUrl = "http://mmdb-api.herokuapp.com";
     // this.baseUrl = "http://localhost:3000";
     this.user = {};
-    this.storage.get('user').then((data) => {
+    this.fetchUser();
+  }
+
+  fetchUser() {
+    return this.storage.get('user').then((data) => {
       console.log(data._id, data.email);
       this.user = data;
     });
   }
 
   fetchCollection() {
+    this.fetchUser();
     return this.http.get(this.baseUrl + '/users/' + this.user._id + '/movies/collection')
       .map((res) => res.json());
   }
 
   fetchWishlist() {
+    this.fetchUser();
     return this.http.get(this.baseUrl + '/users/' + this.user._id + '/movies/wishlist')
       .map((res) => res.json());
   }
@@ -41,11 +47,13 @@ export class CollectionProvider {
   }
 
   removeFromCollection(item, location) {
+    this.fetchUser();
     return this.http.put(this.baseUrl + '/users/' + this.user._id + '/movie/' + item.imdbID + '/delete/' + location, {})
       .map((res) => res.json());
   }
 
   addToCollection(item, location) {
+    this.fetchUser();
     return this.http.post(this.baseUrl + '/users/' + this.user._id + '/movie/add/' + location, item)
       .map((res) => res.json());
   }

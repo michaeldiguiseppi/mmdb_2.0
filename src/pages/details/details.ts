@@ -4,7 +4,6 @@ import { CollectionProvider } from '../../providers/collection/collection';
 
 import { WishlistPage } from '../../pages/wishlist/wishlist';
 import { CollectionPage } from '../../pages/collection/collection';
-import { SearchPage } from '../../pages/search/search';
 
 
 

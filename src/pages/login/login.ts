@@ -32,10 +32,7 @@ export class LoginPage {
   ionViewDidLoad() {
     this.storage.get('token').then((data) => {
       if (data) {
-        console.log("Authorized");
         this.navCtrl.setRoot(CollectionPage);
-      } else {
-        console.log("Unauthorized");
       }
     });
   }

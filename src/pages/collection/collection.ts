@@ -4,9 +4,8 @@ import { Storage } from '@ionic/storage';
 import { CollectionProvider } from '../../providers/collection/collection';
 
 import { DetailsPage } from '../details/details';
-import { LoginPage } from '../login/login';
 import { AuthProvider } from '../../providers/auth/auth';
-
+import { LoginPage } from '../login/login';
 /**
  * Generated class for the CollectionPage page.
  *
@@ -29,10 +28,8 @@ export class CollectionPage {
   }
 
   ionViewWillEnter() {
-    this.storage.get('user').then((data) => {
-      if (data._id) {
-        this.getCollection();
-      }
+    this.collectionProvider.fetchUser().then((data) => {
+      this.getCollection();
     });
   }
 

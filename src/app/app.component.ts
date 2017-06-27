@@ -7,7 +7,6 @@ import { Keyboard } from '@ionic-native/keyboard';
 
 import { CollectionPage } from '../pages/collection/collection';
 import { RandomPage } from '../pages/random/random';
-import { ScanPage } from '../pages/scan/scan';
 import { SearchPage } from '../pages/search/search';
 import { WishlistPage } from '../pages/wishlist/wishlist';
 import { SettingsPage } from '../pages/settings/settings';
@@ -36,15 +35,15 @@ export class MMDB_v2 {
   loggedIn: any;
 
   loggedInPages: PageInterface[] = [
-    { title: 'Search', name: 'SearchPage', component: SearchPage, icon: 'ios-search' },
-    { title: 'Collection', name: 'CollectionPage', component: CollectionPage, icon: 'briefcase' },
-    { title: 'Wishlist', name: 'WishlistPage', component: WishlistPage, icon: 'ios-list' },
-    { title: 'Random', name: 'RandomPage', component: RandomPage, icon: 'help' },
+    { title: 'Search', name: 'SearchPage', component: SearchPage, icon: 'search' },
+    { title: 'Collection', name: 'CollectionPage', component: CollectionPage, icon: 'archive' },
+    { title: 'Wishlist', name: 'WishlistPage', component: WishlistPage, icon: 'heart-outline' },
+    { title: 'Random', name: 'RandomPage', component: RandomPage, icon: 'shuffle' },
     { title: 'Settings', name: 'SettingsPage', component: SettingsPage, icon: 'settings' },
     { title: 'Logout', name: 'LoginPage', component: LoginPage, icon: 'log-out', logsOut: true }
   ];
   loggedOutPages: PageInterface[] = [
-    { title: 'Search', name: 'SearchPage', component: SearchPage, icon: 'ios-search' },
+    { title: 'Search', name: 'SearchPage', component: SearchPage, icon: 'search' },
     { title: 'Login', name: 'LoginPage', component: LoginPage, icon: 'log-in' },
     { title: 'Register', name: 'RegisterPage', component: RegisterPage, icon: 'person-add' }
   ];
@@ -75,24 +74,6 @@ export class MMDB_v2 {
     this.enableMenu(true);
 
     this.listenToLoginEvents();
-
-
-    // this.storage.get('token').then((data) => {
-    //   if (data) {
-    //     this.loggedIn = true;
-    //   } else {
-    //     this.loggedIn = false;
-    //   }
-    // });
-
-    // used for an example of ngFor and navigation
-    // this.pages = [
-    //   { title: 'Search', component: SearchPage },
-    //   { title: 'Collection', component: CollectionPage },
-    //   { title: 'Wishlist', component: WishlistPage },
-    //   { title: 'Random', component: RandomPage },
-    //   { title: 'Settings', component: SettingsPage },
-    // ];
   }
 
   initializeApp() {
@@ -143,16 +124,9 @@ export class MMDB_v2 {
   }
 
   isActive(page: PageInterface) {
-    let childNav = this.nav.getActiveChildNav();
-
     if (this.nav.getActive() && this.nav.getActive().name === page.name) {
       return 'primary';
     }
     return;
   }
-
-  // logout() { ///<-- call this function straight with static button in html
-  //   this.authProvider.logout();
-  //   this.nav.setRoot(LoginPage);
-  // }
 }
